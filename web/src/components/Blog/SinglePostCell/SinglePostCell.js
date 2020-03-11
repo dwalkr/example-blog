@@ -1,6 +1,7 @@
 import Post from 'src/components/Blog/Post'
 import { useLocalForm } from 'tinacms'
 import { useMutation } from '@redwoodjs/web'
+import { InlineForm } from 'react-tinacms-inline'
 
 export const beforeQuery = ({ slug }) => ({
   variables: { slug },
@@ -37,7 +38,7 @@ export const Loading = () => <div>Loading...</div>
 export const Success = ({ post: postData }) => {
   const [updatePost] = useMutation(UPDATE_POST_MUTATION)
 
-  const [post] = useLocalForm({
+  const [post, form] = useLocalForm({
     id: postData.id,
     initialValues: postData,
     fields: [
@@ -74,7 +75,9 @@ export const Success = ({ post: postData }) => {
   })
   return (
     <>
-      <Post post={post} />
+      <InlineForm form={form}>
+        <Post post={post} />
+      </InlineForm>
     </>
   )
 }
