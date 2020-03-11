@@ -4,7 +4,8 @@ import styled from 'styled-components'
 import TextareaAutosize from 'react-textarea-autosize'
 import { radius, color } from '@tinacms/styles'
 
-export function InlineTextareaField({ name, children }) {
+export function InlineTextareaField({ name, children, enabled }) {
+  if (!enabled) return children
   return (
     <InlineField name={name}>
       {({ input, status }) => {
