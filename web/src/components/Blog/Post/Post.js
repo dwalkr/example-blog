@@ -1,10 +1,8 @@
-import { useState, useEffect } from 'react'
 import moment from 'moment'
 import MarkdownIt from 'markdown-it'
 import truncate from 'html-truncate'
 import TagList from 'src/components/Blog/TagList'
 import { Link, routes } from '@redwoodjs/router'
-import { useInlineForm } from 'react-tinacms-inline'
 
 import { InlineTextareaField } from 'src/components/CMS/InlineTextarea'
 import { InlineWysiwyg } from 'src/components/CMS/InlineWysiwyg'
@@ -16,7 +14,10 @@ const formattedDate = (date) => {
 }
 
 const formattedBody = (post, summary) => {
-  let output = md.render(post.body)
+  let output = ''
+  if (post.body) {
+    output = md.render(post.body)
+  }
   if (summary) {
     return truncate(output, 500)
   }

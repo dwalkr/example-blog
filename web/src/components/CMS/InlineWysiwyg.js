@@ -7,7 +7,7 @@ export function InlineWysiwyg({ name, children, enabled }) {
     <InlineField name={name}>
       {({ input, status }) => {
         if (status === 'active') {
-          return <Wysiwyg sticky={'72px'} input={input} />
+          return <Wysiwyg sticky={'72px'} input={input || ''} />
         }
         return children
       }}

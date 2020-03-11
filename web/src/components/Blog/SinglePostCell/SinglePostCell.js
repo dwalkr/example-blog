@@ -129,7 +129,7 @@ function SaveButton({ form, disabled, busy }) {
 function EditBar() {
   const { form, status, activate, deactivate } = useInlineForm()
   const formState = useFormState(form, { dirty: true, submitting: true })
-  console.log(formState)
+
   return (
     <div
       style={{
