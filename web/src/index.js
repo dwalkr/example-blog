@@ -2,6 +2,7 @@ import ReactDOM from 'react-dom'
 import { RedwoodProvider } from '@redwoodjs/web'
 import netlifyIdentity from 'netlify-identity-widget'
 import FatalErrorPage from 'src/pages/FatalErrorPage'
+import { Tina, TinaCMS } from 'tinacms'
 
 import FatalErrorBoundary from 'src/lib/FatalErrorBoundary'
 import Routes from 'src/Routes'
@@ -13,10 +14,19 @@ if (process.env.USE_AUTHENTICATION === 'true') {
   netlifyIdentity.init()
 }
 
+const cms = new TinaCMS({
+  sidebar: {
+    hidden: false,
+    position: 'displace',
+  },
+})
+
 ReactDOM.render(
   <FatalErrorBoundary page={FatalErrorPage}>
     <RedwoodProvider>
-      <Routes />
+      <Tina cms={cms}>
+        <Routes />
+      </Tina>
     </RedwoodProvider>
   </FatalErrorBoundary>,
   document.getElementById('hammer-app')
